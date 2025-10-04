@@ -7,9 +7,10 @@ export default function Login({ navigation }) {
   const [user, setUser] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
- function entrar() { navigation.navigate('Login'); }
-
+function entrar() { 
+   
+    navigation.navigate('Login'); 
+}
 
   return (
     <SafeAreaView style={styles.safeArea}> 
