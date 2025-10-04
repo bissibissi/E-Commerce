@@ -1,41 +1,26 @@
 import React from 'react';
-import { 
-    View, 
-    Text, 
-    StyleSheet, 
-    TouchableOpacity // Necesario para el botón "Cerrar Sesión"
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context'; // Necesario para SafeAreaView
+import { View, Text, StyleSheet, TouchableOpacity,ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context'; 
 import Navbar from '../Componentes/Navbar';
 
 
 export default function Home({ navigation }) {
 
-  // Función para cerrar sesión y volver a la pantalla de Login
   const handleLogout = () => {
-    // Navegamos de vuelta al Login (asumiendo que así se llama tu pantalla de login en la navegación)
     navigation.navigate('Login'); 
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-    
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Mi E-commerce</Text>
-        <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
-          <Text style={styles.logoutButtonText}>Cerrar Sesión</Text>
-        </TouchableOpacity>
+      <View style={styles.contentWrapper}> 
+        <ScrollView contentContainerStyle={styles.contentScroll}>
+            <View style={styles.contentContainer}>
+                <Text style={styles.welcomeText}>¡Bienvenido!</Text>
+                <View style={{height: 500}}></View>
+            </View>
+        </ScrollView>
       </View>
-
-      {/* CONTENIDO PRINCIPAL EN BLANCO (EL PLACEHOLDER) */}
-      <View style={styles.contentContainer}>
-        <Text style={styles.welcomeText}>¡Bienvenido!</Text>
-        <Text style={styles.placeholderText}>Esta es la página principal (Home).</Text>
-        <Text style={styles.placeholderText}>El contenido de tu e-commerce se construirá aquí.</Text>
-      <View>
-          <Navbar navigation={navigation} />
-      </View>
-      </View>
+      <Navbar navigation={navigation} />
       
     </SafeAreaView>
   );
@@ -47,7 +32,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   
-  // Estilos de la Cabecera
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -74,18 +58,25 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-  // Estilos del Contenido Principal (El espacio en blanco)
+  // CORRECCIÓN CRUCIAL: contentWrapper toma el espacio central.
+  contentWrapper: {
+    flex: 1, 
+  },
+  contentScroll: {
+    padding: 20,
+    alignItems: 'center',
+  },
+
   contentContainer: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
   },
   welcomeText: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
     color: '#663fe6ff',
+    marginTop: 50,
   },
   placeholderText: {
     fontSize: 16,
