@@ -19,6 +19,7 @@ export default function App() {
         />
          <Stack.Screen
           name="Home" component = {Home}
+          options={{ headerLeft: () => null}}
         />
         <Stack.Screen
         name = "Navbar" component = {Navbar}

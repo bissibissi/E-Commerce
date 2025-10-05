@@ -6,9 +6,7 @@ import Navbar from '../Componentes/Navbar';
 
 export default function Home({ navigation }) {
 
-  const handleLogout = () => {
-    navigation.navigate('Login'); 
-  };
+  
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -29,7 +27,7 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#f9d5520b',
   },
   
   header: {
@@ -58,7 +56,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-  // CORRECCIÓN CRUCIAL: contentWrapper toma el espacio central.
+
   contentWrapper: {
     flex: 1, 
   },
