@@ -8,6 +8,17 @@ export default function Navbar({ navigation }) {
         <Text style={styles.icon}>🏠</Text>
         <Text style={styles.label}>Home</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Products')}>
+        <Text style={styles.icon}>🛍️</Text>
+        <Text style={styles.label}>Products</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Carrito')}>
+        <Text style={styles.icon}>🛒</Text>
+        <Text style={styles.label}>Carrito</Text>
+      </TouchableOpacity>
+
       <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Profile')}>
         <Text style={styles.icon}>👤</Text>
         <Text style={styles.label}>Profile</Text>
