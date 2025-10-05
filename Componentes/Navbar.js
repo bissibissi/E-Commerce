@@ -29,11 +29,15 @@ export default function Navbar({ navigation }) {
 
 const styles = StyleSheet.create({
   navbar: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
     height: 70,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#eee',
+    backgroundColor: '#ccc92c7a',
     borderTopWidth: 1,
     borderTopColor: '#ccc',
     paddingBottom: 10,

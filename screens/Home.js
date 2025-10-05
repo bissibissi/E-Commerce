@@ -10,6 +10,7 @@ export default function Home({ navigation }) {
     const handleLogout = () => {
         navigation.navigate('Login'); 
     };
+  
 
 
 
@@ -117,4 +118,60 @@ const styles = StyleSheet.create({
         color: '#666666',
         marginVertical: 4,
     },
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#f9d5520b',
+  },
+  
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 15,
+    backgroundColor: '#F5F5F5',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E0E0E0',
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333333',
+  },
+  logoutButton: {
+    backgroundColor: '#64005cff', 
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 5,
+  },
+  logoutButtonText: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+
+
+  contentWrapper: {
+    flex: 1, 
+  },
+  contentScroll: {
+    padding: 20,
+    alignItems: 'center',
+  },
+
+  contentContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  welcomeText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#663fe6ff',
+    marginTop: 50,
+  },
+  placeholderText: {
+    fontSize: 16,
+    color: '#666666',
+    marginVertical: 4,
+  },
 });
