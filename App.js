@@ -26,8 +26,7 @@ export default function App() {
           name="Home" component = {Home}
           options={{ headerLeft: () => null}}
         />
-<<<<<<< HEAD
-=======
+
         <Stack.Screen
         name = "Navbar" component = {Navbar}
         />
@@ -40,7 +39,7 @@ export default function App() {
          <Stack.Screen
         name = "Carrito" component = {Carrito}
         />
->>>>>>> 8a90a325c88b24c731063d9c38e10f228ab02de4
+
       </Stack.Navigator>
     </NavigationContainer>
    

@@ -1,13 +1,11 @@
-import React, { useState } from 'react'; 
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput } from 'react-native'; 
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity,ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context'; 
 import Navbar from '../Componentes/Navbar';
 
 
 export default function Home({ navigation }) {
-    const [searchText, setSearchText] = useState('');
 
-<<<<<<< HEAD
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.contentWrapper}> 
@@ -15,119 +13,16 @@ export default function Home({ navigation }) {
             <View style={styles.contentContainer}>
                 <Text style={styles.welcomeText}>¡Bienvenido!</Text>
                 <View style={{height: 500}}></View>
-=======
-    const handleLogout = () => {
-        navigation.navigate('Login'); 
-    };
-  
-
-
-
-    return (
-        <SafeAreaView style={styles.safeArea}>
-            <View style={styles.contentWrapper}> 
-                <ScrollView contentContainerStyle={styles.contentScroll}>
-                    <View style={styles.contentContainer}>
-                        
-            
-                      
-                        <TextInput
-                            style={styles.searchInput}
-                            placeholder="Buscar peluches..."
-                            value={searchText}
-                            onChangeText={setSearchText}
-                        />
-                        
-                        
-                        <View style={styles.categoryContainer}>
-                            <TouchableOpacity 
-                                style={styles.categoryButton} 
-                                onPress={() => handleCategoryPress('Pequeños')}
-                            >
-                                <Text style={styles.categoryButtonText}>Pequeños</Text>
-                            </TouchableOpacity>
-                            
-                            <TouchableOpacity 
-                                style={styles.categoryButton} 
-                                onPress={() => handleCategoryPress('Grandes')}
-                            >
-                                <Text style={styles.categoryButtonText}>Grandes</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                        
-                        <View style={{height: 500}}>
-                            <Text style={styles.placeholderText}>Aquí iria la lista de peluches...</Text>
-                        </View>
-                    </View>
-                </ScrollView>
->>>>>>> 8a90a325c88b24c731063d9c38e10f228ab02de4
             </View>
-            <Navbar navigation={navigation} />
-        </SafeAreaView>
-    );
+        </ScrollView>
+      </View>
+      <Navbar navigation={navigation} />
+      
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-    safeArea: {
-        flex: 1,
-        backgroundColor: '#FFFFFF',
-    },
-    
-    
-    contentWrapper: {
-        flex: 1, 
-    },
-    contentScroll: {
-        padding: 20,
-        alignItems: 'center', 
-    },
-
-    contentContainer: {
-        width: '100%', 
-        alignItems: 'center',
-    },
-    welcomeText:{
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20, 
-        color: '#663fe6ff',
-        marginTop: 10, 
-    },
-    
-    searchInput: {
-        width: '100%',
-        height: 40,
-        borderWidth: 1,
-        borderColor: '#ccccccff',
-        borderRadius: 10, 
-        paddingHorizontal: 15,
-        marginBottom: 13, 
-        fontSize: 16,
-    },
-    categoryContainer: {
-        flexDirection: 'row', 
-        justifyContent: 'space-around', 
-        width: '100%',
-        marginBottom: 30,
-    },
-    categoryButton: {
-        backgroundColor: '#663fe6ff', 
-        paddingVertical: 10,
-        paddingHorizontal: 40,
-        borderRadius: 10,
-    },
-    categoryButtonText: {
-        color: '#FFFFFF',
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    
-    placeholderText: {
-        fontSize: 16,
-        color: '#666666',
-        marginVertical: 4,
-    },
   safeArea: {
     flex: 1,
     backgroundColor: '#f9d5520b',
