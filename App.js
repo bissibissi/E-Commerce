@@ -2,12 +2,13 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './screens/Login';
+import { LogBox } from 'react-native';
 import Register from './screens/Register';
 import Home from './screens/Home';
 import Navbar from './Componentes/Navbar';
 
 const Stack = createStackNavigator();
-
+ LogBox.ignoreAllLogs(true);
 export default function App() {
   return (
     <NavigationContainer>
@@ -21,10 +22,8 @@ export default function App() {
           name="Home" component = {Home}
           options={{ headerLeft: () => null}}
         />
-        <Stack.Screen
-        name = "Navbar" component = {Navbar}
-        />
       </Stack.Navigator>
     </NavigationContainer>
+   
   );
 }

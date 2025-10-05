@@ -6,8 +6,6 @@ import Navbar from '../Componentes/Navbar';
 
 export default function Home({ navigation }) {
 
-  
-
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.contentWrapper}> 
