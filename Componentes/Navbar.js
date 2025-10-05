@@ -27,11 +27,11 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    height: 70,
+    height: 55,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#ccc92cdb',
+    backgroundColor: '#ffffffdb',
     borderTopWidth: 1,
     borderTopColor: '#ccc',
     paddingBottom: 10,
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   icon: {
-    fontSize: 28,
+    fontSize: 23,
+    marginTop: 13,
   },
   label: {
     fontSize: 14,
