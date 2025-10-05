@@ -8,21 +8,15 @@ export default function Navbar({ navigation }) {
         <Text style={styles.icon}>🏠</Text>
         <Text style={styles.label}>Home</Text>
       </TouchableOpacity>
-
-      <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Products')}>
-        <Text style={styles.icon}>🛍️</Text>
-        <Text style={styles.label}>Products</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Carrito')}>
+      
+       <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Carrito')}>
         <Text style={styles.icon}>🛒</Text>
         <Text style={styles.label}>Carrito</Text>
       </TouchableOpacity>
-
       <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Profile')}>
         <Text style={styles.icon}>👤</Text>
         <Text style={styles.label}>Profile</Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
     </View>
   );
 }
@@ -37,7 +31,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#ccc92c7a',
+    backgroundColor: '#ccc92cdb',
     borderTopWidth: 1,
     borderTopColor: '#ccc',
     paddingBottom: 10,

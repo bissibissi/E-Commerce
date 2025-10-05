@@ -1,82 +1,171 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity,ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context'; 
 import Navbar from '../Componentes/Navbar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const images = [
+  { name: '1.jpg', source: require('../assets/1.jpg') },
+  { name: '2.jpg', source: require('../assets/2.jpg') },
+  { name: '3.jpg', source: require('../assets/3.jpg') },
+  { name: '4.jpg', source: require('../assets/4.jpg') },
+];
 
-export default function Home({ navigation }) {
-
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.contentWrapper}> 
-        <ScrollView contentContainerStyle={styles.contentScroll}>
-            <View style={styles.contentContainer}>
-                <Text style={styles.welcomeText}>¡Bienvenido!</Text>
-                <View style={{height: 500}}></View>
-            </View>
-        </ScrollView>
-      </View>
-      <Navbar navigation={navigation} />
-      
-    </SafeAreaView>
-  );
+function getRows(arr, itemsPerRow) {
+  const rows = [];
+  for (let i = 0; i < arr.length; i += itemsPerRow) {
+    rows.push(arr.slice(i, i + itemsPerRow));
+  }
+  return rows;
 }
 
+export default function Home({ navigation }) {
+  const [savedImages, setSavedImages] = useState([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const stored = await AsyncStorage.getItem('Images');
+        if (stored) {
+          setSavedImages(JSON.parse(stored));
+        }
+      } catch (error) {
+        console.error('Error al obtener imágenes:', error);
+      }
+    };
+    fetchImages();
+  }, []);
+
+  const saveImage = async (name) => {
+    if (!savedImages.includes(name)) {
+      const newImages = [...savedImages, name];
+      setSavedImages(newImages);
+      await AsyncStorage.setItem('Images', JSON.stringify(newImages));
+    }
+  };
+
+  const rows = getRows(images, 2);
+
+  return (
+      <View style={styles.container}>
+          <TextInput
+            style={styles.searchBar}
+            placeholder="Buscar imágenes..."
+            placeholderTextColor="#888"
+            editable={false}
+          />
+          <View style={styles.imagesContainer}>
+            {rows.map((row, rowIndex) => (
+              <View key={rowIndex} style={styles.row}>
+                {row.map((img) => (
+                  <View key={img.name} style={styles.imageBox}>
+                    <View style={styles.imageWrapper}>
+                      {!savedImages.includes(img.name) ? (
+                        <TouchableOpacity
+                          style={styles.saveButton}
+                          onPress={() => saveImage(img.name)}
+                        >
+                          <Text style={styles.saveButtonText}>+</Text>
+                        </TouchableOpacity>
+                      ) : (
+                        <View style={styles.savedLabel}>
+                          <Text style={styles.savedLabelText}>✔</Text>
+                        </View>
+                      )}
+                      <Image source={img.source} style={styles.image} />
+                    </View>
+                  </View>
+                ))}
+              </View>
+            ))}
+          </View>
+          <Navbar navigation={navigation} />
+        </View>
+      );
+    }
+    
 const styles = StyleSheet.create({
-  safeArea: {
+  container: {
     flex: 1,
-    backgroundColor: '#f9d5520b',
+    paddingTop: 40,
+    backgroundColor: '#fff',
   },
-  
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 15,
-    backgroundColor: '#F5F5F5',
-    borderBottomWidth: 1,
-    borderBottomColor: '#E0E0E0',
+  searchBar: {
+    height: 40,
+    marginHorizontal: 20,
+    marginBottom: 16,
+    borderRadius: 20,
+    backgroundColor: '#f0f0f0',
+    paddingHorizontal: 16,
+    fontSize: 16,
+    color: '#333',
+    borderWidth: 1,
+    borderColor: '#ddd',
   },
-  headerTitle: {
+  title: {
+    textAlign: 'center',
     fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333333',
+    marginBottom: 10,
   },
-  logoutButton: {
-    backgroundColor: '#64005cff', 
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 5,
-  },
-  logoutButtonText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-
-
-  contentWrapper: {
-    flex: 1, 
-  },
-  contentScroll: {
-    padding: 20,
+  imagesContainer: {
     alignItems: 'center',
+    paddingBottom: 80,
   },
-
-  contentContainer: {
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  imageBox: {
+    alignItems: 'center',
+    marginHorizontal: 10,
+  },
+  imageWrapper: {
+    position: 'relative',
+    width: 140,
+    height: 220,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  welcomeText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#663fe6ff',
-    marginTop: 50,
+  image: {
+    width: 140,
+    height: 220,
+    borderRadius: 10,
   },
-  placeholderText: {
-    fontSize: 16,
-    color: '#666666',
-    marginVertical: 4,
+  saveButton: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    zIndex: 1,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: '#d00',
+  },
+  saveButtonText: {
+    color: '#d00',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  savedLabel: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    zIndex: 1,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: '#0a0',
+  },
+  savedLabelText: {
+    color: '#0a0',
+    fontWeight: 'bold',
+    fontSize: 18,
   },
 });
